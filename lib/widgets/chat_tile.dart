@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../pages/chat_page.dart'; // Import halaman chat yang baru dibuat
 
 class ChatTile extends StatelessWidget {
   final String name;
@@ -22,7 +23,7 @@ class ChatTile extends StatelessWidget {
       leading: CircleAvatar(
         radius: 24,
         backgroundImage: NetworkImage(avatarUrl),
-        backgroundColor: const Color(0xFF202C33), // Warna fallback
+        backgroundColor: const Color(0xFF202C33),
       ),
       title: Text(
         name,
@@ -57,8 +58,17 @@ class ChatTile extends StatelessWidget {
             ),
         ],
       ),
+      // MENGAKTIFKAN NAVIGASI KLIK
       onTap: () {
-        // Aksi saat chat diklik
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChatPage(
+              name: name,
+              avatarUrl: avatarUrl,
+            ),
+          ),
+        );
       },
     );
   }
