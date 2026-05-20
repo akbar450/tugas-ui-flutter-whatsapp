@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class ChatPage extends StatelessWidget {
   final String name;
 
-  // avatarUrl sudah dihapus dari constructor
   const ChatPage({super.key, required this.name});
 
   @override
@@ -47,39 +46,87 @@ class ChatPage extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.all(16),
                 children: [
+                  // 1. Bubble Chat Kiri (Penerima)
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
-                      margin: const EdgeInsets.only(bottom: 10),
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF202C33),
-                        borderRadius: BorderRadius.circular(12),
+                      margin: const EdgeInsets.only(bottom: 10, right: 60), // Margin kanan agar tidak full layar
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF202C33),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(0), // Sudut lancip kiri atas
+                          topRight: Radius.circular(12),
+                          bottomLeft: Radius.circular(12),
+                          bottomRight: Radius.circular(12),
+                        ),
                       ),
-                      child: const Text(
-                        'Halo, besok jadi kumpul jam berapa?',
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const Text(
+                            'Halo, besok jadi kumpul jam berapa?',
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                          const SizedBox(height: 4),
+                          // Waktu pesan
+                          const Text(
+                            '12:30',
+                            style: TextStyle(color: Color(0xFF8696A0), fontSize: 11),
+                          ),
+                        ],
                       ),
                     ),
                   ),
+                  
+                  // 2. Bubble Chat Kanan (Pengirim)
                   Align(
                     alignment: Alignment.centerRight,
                     child: Container(
-                      margin: const EdgeInsets.only(bottom: 10),
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF005C4B),
-                        borderRadius: BorderRadius.circular(12),
+                      margin: const EdgeInsets.only(bottom: 10, left: 60), // Margin kiri agar tidak full layar
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF005C4B),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(12),
+                          topRight: Radius.circular(0), // Sudut lancip kanan atas
+                          bottomLeft: Radius.circular(12),
+                          bottomRight: Radius.circular(12),
+                        ),
                       ),
-                      child: const Text(
-                        'Jam 10 pagi ya.',
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const Text(
+                            'Jam 10 pagi ya.',
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                          const SizedBox(height: 4),
+                          // Waktu pesan dan Centang Biru
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Text(
+                                '12:31',
+                                style: TextStyle(color: Color(0xFF8696A0), fontSize: 11),
+                              ),
+                              SizedBox(width: 4),
+                              Icon(
+                                Icons.done_all, // Icon centang 2
+                                color: Color(0xFF53BDEB), // Warna biru centang WhatsApp
+                                size: 16,
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ],
               ),
             ),
+            
+            // Kolom Input Pesan
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
