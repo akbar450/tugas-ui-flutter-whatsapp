@@ -6,35 +6,31 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Data chat dummy
+    // Data chat dummy dengan total pesan belum dibaca = 4
     final List<Map<String, dynamic>> chatList = [
       {
         'name': 'Budi Santoso',
         'message': 'Halo, besok jadi kumpul jam berapa?',
         'time': '12:30',
-        'unread': 2,
-        'avatar': 'https://i.pravatar.cc/150?u=budi',
+        'unread': 1,
       },
       {
         'name': 'Sari',
         'message': 'Oke siap! Nanti kabari lagi ya.',
         'time': '11:00',
-        'unread': 4,
-        'avatar': 'https://i.pravatar.cc/150?u=sari',
+        'unread': 1,
       },
       {
         'name': 'Grup Kuliah',
         'message': 'Dosen: Jangan lupa tugas UI/UX dikumpul minggu depan.',
         'time': '09:15',
-        'unread': 15,
-        'avatar': 'https://i.pravatar.cc/150?u=grup',
+        'unread': 0,
       },
       {
         'name': 'Fahrul',
         'message': 'Bro, script backend udah jalan belum?',
         'time': 'Kemarin',
-        'unread': 5,
-        'avatar': 'https://i.pravatar.cc/150?u=fahrul',
+        'unread': 0,
       },
     ];
 
@@ -118,7 +114,6 @@ class HomePage extends StatelessWidget {
                   message: chat['message'],
                   time: chat['time'],
                   unreadCount: chat['unread'],
-                  avatarUrl: chat['avatar'],
                 );
               },
             ),
@@ -155,7 +150,7 @@ class HomePage extends StatelessWidget {
               icon: Padding(
                 padding: const EdgeInsets.only(bottom: 4.0),
                 child: Badge(
-                  label: const Text('4'),
+                  label: const Text('4'), // Label disesuaikan menjadi 4
                   backgroundColor: const Color(0xFF25D366),
                   textColor: const Color(0xFF0B141A),
                   child: Container(
@@ -197,7 +192,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // Widget bantuan untuk membuat kapsul filter secara dinamis
+  // Widget helper untuk membuat chip filter
   Widget _buildFilterChip(String label, {required bool isSelected}) {
     return Container(
       margin: const EdgeInsets.only(right: 8),

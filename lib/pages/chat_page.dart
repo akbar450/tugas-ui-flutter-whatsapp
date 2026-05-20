@@ -2,22 +2,26 @@ import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
   final String name;
-  final String avatarUrl;
 
-  // Menerima data nama dan foto dari halaman sebelumnya
-  const ChatPage({super.key, required this.name, required this.avatarUrl});
+  // avatarUrl sudah dihapus dari constructor
+  const ChatPage({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
+    String initial = name.isNotEmpty ? name[0].toUpperCase() : '?';
+
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 0, // Mengurangi jarak default agar foto profil lebih mepet ke tombol back
+        titleSpacing: 0,
         title: Row(
           children: [
             CircleAvatar(
               radius: 18,
-              backgroundImage: NetworkImage(avatarUrl),
-              backgroundColor: const Color(0xFF202C33),
+              backgroundColor: const Color(0xFF637B85),
+              child: Text(
+                initial,
+                style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+              ),
             ),
             const SizedBox(width: 10),
             Expanded(
@@ -36,15 +40,13 @@ class ChatPage extends StatelessWidget {
         ],
       ),
       body: Container(
-        color: const Color(0xFF0B141A), // Background gelap standar WA
+        color: const Color(0xFF0B141A),
         child: Column(
           children: [
-            // Area Chat Bubbles
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.all(16),
                 children: [
-                  // Chat Bubble Kiri (Penerima)
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
@@ -60,15 +62,13 @@ class ChatPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
-                  // Chat Bubble Kanan (Pengirim)
                   Align(
                     alignment: Alignment.centerRight,
                     child: Container(
                       margin: const EdgeInsets.only(bottom: 10),
                       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF005C4B), // Hijau khas bubble chat WA Dark Mode
+                        color: const Color(0xFF005C4B),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Text(
@@ -80,13 +80,10 @@ class ChatPage extends StatelessWidget {
                 ],
               ),
             ),
-            
-            // Kolom Input Pesan di Bawah
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  // TextField dan Ikon
                   Expanded(
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
@@ -117,8 +114,6 @@ class ChatPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  
-                  // Tombol Mic / Send
                   const CircleAvatar(
                     radius: 24,
                     backgroundColor: Color(0xFF25D366),

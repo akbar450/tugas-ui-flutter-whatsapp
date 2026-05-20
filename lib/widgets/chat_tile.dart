@@ -1,29 +1,34 @@
 import 'package:flutter/material.dart';
-import '../pages/chat_page.dart'; // Import halaman chat yang baru dibuat
+import '../pages/chat_page.dart';
 
 class ChatTile extends StatelessWidget {
   final String name;
   final String message;
   final String time;
   final int unreadCount;
-  final String avatarUrl;
 
+  // avatarUrl sudah dihapus dari sini
   const ChatTile({
     super.key,
     required this.name,
     required this.message,
     required this.time,
     required this.unreadCount,
-    required this.avatarUrl,
   });
 
   @override
   Widget build(BuildContext context) {
+    // Mengambil huruf pertama dari nama, jadikan huruf besar (Kapital)
+    String initial = name.isNotEmpty ? name[0].toUpperCase() : '?';
+
     return ListTile(
       leading: CircleAvatar(
         radius: 24,
-        backgroundImage: NetworkImage(avatarUrl),
-        backgroundColor: const Color(0xFF202C33),
+        backgroundColor: const Color(0xFF637B85), // Warna background abu-abu kebiruan khas inisial WA
+        child: Text(
+          initial,
+          style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+        ),
       ),
       title: Text(
         name,
@@ -58,14 +63,12 @@ class ChatTile extends StatelessWidget {
             ),
         ],
       ),
-      // MENGAKTIFKAN NAVIGASI KLIK
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ChatPage(
-              name: name,
-              avatarUrl: avatarUrl,
+              name: name, // Hanya mengirimkan nama
             ),
           ),
         );
