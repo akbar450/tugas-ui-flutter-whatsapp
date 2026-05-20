@@ -6,8 +6,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Data chat dikembalikan ke versi dummy pertama
-    // Total unread: 2 + 4 + 15 + 5 = 26 (sesuai dengan badge di navigasi bawah)
+    // Data chat dummy
     final List<Map<String, dynamic>> chatList = [
       {
         'name': 'Budi Santoso',
@@ -58,7 +57,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Bilah Pencarian Meta AI
+          // 1. Bilah Pencarian Meta AI
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Container(
@@ -80,7 +79,35 @@ class HomePage extends StatelessWidget {
             ),
           ),
           
-          // Daftar Chat
+          // 2. Filter Chips (Semua, Belum dibaca, dll)
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  _buildFilterChip('Semua', isSelected: true),
+                  _buildFilterChip('Belum dibaca 4', isSelected: false),
+                  _buildFilterChip('Favorit', isSelected: false),
+                  _buildFilterChip('Grup 1', isSelected: false),
+                  
+                  // Tombol + (Plus)
+                  Container(
+                    margin: const EdgeInsets.only(right: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: const Color(0xFF313D45)),
+                    ),
+                    child: const Icon(Icons.add, color: Color(0xFF8696A0), size: 18),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          
+          // 3. Daftar Chat
           Expanded(
             child: ListView.builder(
               itemCount: chatList.length,
@@ -128,7 +155,7 @@ class HomePage extends StatelessWidget {
               icon: Padding(
                 padding: const EdgeInsets.only(bottom: 4.0),
                 child: Badge(
-                  label: const Text('4'), // Angka tetap 26
+                  label: const Text('4'),
                   backgroundColor: const Color(0xFF25D366),
                   textColor: const Color(0xFF0B141A),
                   child: Container(
@@ -165,6 +192,26 @@ class HomePage extends StatelessWidget {
               label: 'Panggilan',
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  // Widget bantuan untuk membuat kapsul filter secara dinamis
+  Widget _buildFilterChip(String label, {required bool isSelected}) {
+    return Container(
+      margin: const EdgeInsets.only(right: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        color: isSelected ? const Color(0xFF1E362D) : Colors.transparent,
+        borderRadius: BorderRadius.circular(20),
+        border: isSelected ? null : Border.all(color: const Color(0xFF313D45)),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: isSelected ? const Color(0xFF25D366) : const Color(0xFF8696A0),
+          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
         ),
       ),
     );
