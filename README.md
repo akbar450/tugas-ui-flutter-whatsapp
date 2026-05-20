@@ -1,8 +1,8 @@
 # Tugas UI/UX Flutter - WhatsApp Clone
 
 ## Identitas
-- **Nama:** Muhammad Rama Alfiannur
-- **NIM:** [Isi dengan NIM Kamu]
+- **Nama:** Suraya Akbar
+- **NIM:** [11203362410132]
 - **Pilihan:** A
 
 ## Deskripsi Singkat
