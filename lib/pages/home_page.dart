@@ -128,7 +128,7 @@ class HomePage extends StatelessWidget {
               icon: Padding(
                 padding: const EdgeInsets.only(bottom: 4.0),
                 child: Badge(
-                  label: const Text('26'), // Angka tetap 26
+                  label: const Text('4'), // Angka tetap 26
                   backgroundColor: const Color(0xFF25D366),
                   textColor: const Color(0xFF0B141A),
                   child: Container(
