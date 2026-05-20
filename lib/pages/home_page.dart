@@ -83,9 +83,9 @@ class HomePage extends StatelessWidget {
               child: Row(
                 children: [
                   _buildFilterChip('Semua', isSelected: true),
-                  _buildFilterChip('Belum dibaca 4', isSelected: false),
+                  _buildFilterChip('Belum dibaca 2', isSelected: false),
                   _buildFilterChip('Favorit', isSelected: false),
-                  _buildFilterChip('Grup 1', isSelected: false),
+                  _buildFilterChip('Grup', isSelected: false),
                   
                   // Tombol + (Plus)
                   Container(
